@@ -27,8 +27,10 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          enable-AzPSSession: true
 
+      - name: Echo
+        run: echo ${{ vars.AZURE_RG }}
+        
       - name: Deploy template
         uses: azure/arm-deploy@v1
         with:
