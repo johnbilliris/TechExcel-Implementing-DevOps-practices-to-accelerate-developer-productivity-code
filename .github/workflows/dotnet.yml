@@ -65,9 +65,26 @@ jobs:
           app-name: 'z64ihbf6jbe4o-dev'
           images: ${{env.registryName}}/${{env.repositoryName}}:${{github.run_number}}
 
+  test-deployment:
+    runs-on: ubuntu-latest
+    needs: docker-build-and-push
+    environment:
+      name: test
+      url: https://z64ihbf6jbe4o-test.azurewebsites.net/
+    steps:
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'z64ihbf6jbe4o-test'
+          images: ${{env.registryName}}/${{env.repositoryName}}:${{github.run_number}}
+          
   prod-deployment:
     runs-on: ubuntu-latest
-    needs: dev-deployment
+    needs: docker-build-and-push
     environment:
       name: prod
       url: https://z64ihbf6jbe4o-prod.azurewebsites.net/
