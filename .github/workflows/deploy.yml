@@ -22,4 +22,4 @@ jobs:
           scope: resourcegroup
           resourceGroupName: ${{ vars.AZURE_RG }}
           region: australiaeast
-          template: ./Infrastructure/main.bicep
+          template: ./InfrastructureAsCode/main.bicep
