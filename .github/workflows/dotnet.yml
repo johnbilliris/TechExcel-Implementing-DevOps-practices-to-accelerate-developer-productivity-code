@@ -62,7 +62,7 @@ jobs:
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: 'faipkqekvnjcc-dev'
+          app-name: 'z64ihbf6jbe4o-dev'
           images: ${{env.registryName}}/${{env.repositoryName}}:${{github.run_number}}
 
   prod-deployment:
