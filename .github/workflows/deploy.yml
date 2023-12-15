@@ -20,6 +20,6 @@ jobs:
         uses: azure/arm-deploy@v1
         with:
           scope: resourcegroup
-          resourceGroupName: ${{ secrets.AZURE_RG }}
+          resourceGroupName: ${{ vars.AZURE_RG }}
           region: australiaeast
           template: ./Infrastructure/main.bicep
