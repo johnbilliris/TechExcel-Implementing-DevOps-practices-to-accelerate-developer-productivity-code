@@ -2,12 +2,20 @@ name: IaC Deploy
 
 on:
   workflow_dispatch:
+   inputs:
+    appenv:
+      type: choice
+      description: Select Target ENV
+      options: 
+        - dev
+        - test
+        - prod
 
 jobs:
   job1:
     runs-on: ubuntu-latest
     continue-on-error: true
-    environment: test
+    environment: ${{ github.event.inputs.appenv }}
     
     steps:
       - name: Checkout source code
@@ -26,3 +34,5 @@ jobs:
           resourceGroupName: ${{ vars.AZURE_RG }}
           region: australiaeast
           template: ./InfrastructureAsCode/main.bicep
+          parameters: environment = ${{ github.event.inputs.appenv }}
+          
