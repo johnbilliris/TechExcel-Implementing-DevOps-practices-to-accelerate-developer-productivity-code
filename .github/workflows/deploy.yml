@@ -7,7 +7,7 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     continue-on-error: true
-    environment: dev
+    environment: test
     
     steps:
       - name: Checkout source code
