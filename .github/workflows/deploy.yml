@@ -17,7 +17,7 @@ env:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    environment: ${{ env.ENVIRONMENT_NAME }}
+    environment: $ENVIRONMENT_NAME
     
     steps:
       - name: Checkout source code
