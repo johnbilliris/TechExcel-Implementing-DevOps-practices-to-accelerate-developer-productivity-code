@@ -17,7 +17,6 @@ env:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    environment: $ENVIRONMENT_NAME
     
     steps:
       - name: Checkout source code
@@ -27,16 +26,12 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Echo
-        run: echo ${{ vars.AZURE_RG }}
         
       - name: Deploy template
         uses: azure/arm-deploy@v1
         with:
           scope: resourcegroup
-          resourceGroupName: ${{ vars.AZURE_RG }}
-          region: australiaeast
+          resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./InfrastructureAsCode/main.bicep
           parameters: environment = ${{ github.event.inputs.appenv }}
           
