@@ -11,11 +11,13 @@ on:
         - test
         - prod
 
+env:
+  ENVIRONMENT_NAME: ${{ github.event.inputs.appenv }}
+
 jobs:
   job1:
     runs-on: ubuntu-latest
-    continue-on-error: true
-    environment: ${{ github.event.inputs.appenv }}
+    environment: ${{ env.ENVIRONMENT_NAME }}
     
     steps:
       - name: Checkout source code
